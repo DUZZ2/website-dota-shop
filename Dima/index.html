@@ -1,143 +1,241 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dota 2 Merch Shop</title>
-    <link rel="stylesheet" href="style.css"> 
-</head>
-<body>
+// ====================================
+// ГЛОБАЛЬНІ ЗМІННІ ТА КОНФІГУРАЦІЯ
+// ====================================
+let cart = []; 
+const productsData = []; 
 
-    <header class="header">
-        <div class="header-top">
-            <div class="logo">DOTA 2</div>
-            <div class="search-bar">
-                <input type="search" placeholder="Введіть ключове слово..." class="search-input">
-            </div>
-            <div class="account-actions">
-                <a href="#" class="icon-link">👤</a> 
-                <a href="#" id="cart-icon-link" class="icon-link">🛒</a> 
-            </div>
-        </div>
-        <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a href="#apparel" class="nav-item active">Одяг</a></li>
-                <li><a href="#acc_fig" class="nav-item">Аксесуари та Фігурки</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>Знайди свій ідеальний мерч Dota 2!</h1>
-            <p class="sale-info">Знижка до 50% на обрані товари</p>
-            <a href="#apparel" class="btn btn-primary">Переглянути колекцію</a>
-        </div>
-    </section>
-
-    <section class="products-section new-arrivals" id="apparel">
-        <h2>Одяг (Футболки, Худі, Світшоти)</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="anti_mage.png" alt="Футболка Anti-Mage" class="product-image">
-                <p class="product-name">Anti-Mage Illusion T-Shirt</p>
-                <p class="product-description">Високоякісна бавовняна футболка із зображенням ілюзій Anti-Mage.</p>
-                <p class="product-price">1199 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-            <div class="product-card">
-                <img src="Pudge Hook & Chains T-Shirt.png" alt="Футболка Pudge" class="product-image">
-                <p class="product-name">Pudge Hook & Chains T-Shirt</p>
-                <p class="product-description">Футболка для фанатів м'ясника. Міцний матеріал та унікальний дизайн.</p>
-                <p class="product-price">999 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-            <div class="product-card">
-                <img src="t_25_2.png" alt="футболка winner TI 25" class="product-image">
-                <p class="product-name">Худі The Grand Magus</p>
-                <p class="product-description">Тепле худі з преміальним принтом Rubick. Ідеально для холодних ночей.</p>
-                <p class="product-price">2399 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-            <div class="product-card">
-                <img src="ti_25.png" alt="Худі winner TI 25" class="product-image">
-                <p class="product-name">Худі winner TI 25</p>
-                <p class="product-description">Ексклюзивна серія до The International. Обмежена кількість!</p>
-                <p class="product-price">2599 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-            
-            <div class="product-card sale-item">
-                <img src="path/to/product_sale.jpg" alt="Знижковий товар" class="product-image">
-                <p class="product-name">Футболка: Invoker (🔥 ЗНИЖКА!)</p>
-                <p class="product-description">Остання можливість придбати класичну футболку Invoker за спеціальною ціною.</p>
-                <p class="product-price">599 грн <del>1199 грн</del></p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="products-section" id="acc_fig"> 
-        <h2>Аксесуари та Фігурки</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="mouse_pad.png" alt="Килимок DOTA 2" class="product-image">
-                <p class="product-name">Килимок для миші (Великий)</p>
-                <p class="product-description">Максимальний контроль та стиль для вашого ігрового місця. Нековзна основа.</p>
-                <p class="product-price">799 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-            <div class="product-card">
-                <img src="tiny.png" alt="Фігурка Tiny" class="product-image">
-                <p class="product-name">Фігурка: Плавучий Tiny</p>
-                <p class="product-description">Деталізована колекційна фігурка героя Tiny. Чудовий подарунок фанату.</p>
-                <p class="product-price">1999 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-            <div class="product-card">
-                <img src="tiny.png" alt="Фігурка Pudge" class="product-image">
-                <p class="product-name">Фігурка: Pudge</p>
-                <p class="product-description">Деталізована колекційна фігурка героя Pudge. Чудовий подарунок фанату.</p>
-                <p class="product-price">1999 грн</p>
-                <button class="btn btn-add-to-cart">Купити</button>
-            </div>
-        </div>
-    </section>
+// Елементи DOM
+// ... (не змінюються)
+const cartIconLink = document.getElementById('cart-icon-link'); 
+const cartModal = document.getElementById('cart-modal');
+const closeModalBtn = document.querySelector('.modal .close-btn');
+const cartItemsList = document.getElementById('cart-items-list');
+const cartTotalElement = document.getElementById('cart-total');
+const checkoutBtn = document.getElementById('checkout-btn');
+const searchInput = document.querySelector('.search-input');
+const navItems = document.querySelectorAll('.nav-item'); 
+const productSections = document.querySelectorAll('.products-section'); 
 
 
-    <footer class="footer">
-        <div class="footer-links">
-            <h4>Підтримка</h4>
-            <a href="#">FAQ</a>
-            <a href="#">Доставка і оплата</a>
-            <a href="#">Політика повернення</a>
-        </div>
-        <div class="footer-links">
-            <h4>Про нас</h4>
-            <a href="#">Історія</a>
-            <a href="#">Контакти</a>
-            <a href="#">Вакансії</a>
-        </div>
-        <div class="footer-social">
-            <h4>Слідкуйте за нами</h4>
-            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
-        </div>
-        <p class="copyright">&copy; 2025 Dota 2 Merch Shop. Всі права захищені.</p>
-    </footer>
-    
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Ваш кошик</h2>
-            <div id="cart-items-list">
-                </div>
-            <div class="cart-summary">
-                <p>Загальна сума: <span id="cart-total">0.00 грн</span></p>
-            </div>
-            <button id="checkout-btn" class="btn btn-checkout">Оформити замовлення</button>
-        </div>
-    </div>
+// ====================================
+// 1. ІНІЦІАЛІЗАЦІЯ ДАНИХ ТОВАРІВ (ДЛЯ ПОШУКУ)
+// ====================================
 
-    <script src="script.js"></script> 
-</body>
-</html>
+function initializeProductsData() {
+    // Збираємо дані про товари з усіх секцій. Логіка залишається та сама.
+    document.querySelectorAll('.product-card').forEach(card => {
+        const name = card.querySelector('.product-name').textContent.trim();
+        // Враховуємо "sale" ціни
+        const priceText = card.querySelector('.product-price').textContent.replace('$', '').trim().split(' ')[0]; 
+        const price = parseFloat(priceText);
+        
+        productsData.push({ name, price, cardElement: card });
+    });
+}
+
+// ====================================
+// 2. ЛОГІКА КОШИКА (CART LOGIC)
+// ====================================
+
+function updateCartIcon() {
+    const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+    cartIconLink.textContent = cartItemCount > 0 ? `🛒 (${cartItemCount})` : '🛒';
+}
+
+function renderCart() {
+    cartItemsList.innerHTML = '';
+    let total = 0;
+
+    if (cart.length === 0) {
+        cartItemsList.innerHTML = '<p class="empty-cart-message">Кошик порожній.</p>';
+    } else {
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+
+            const cartItemHTML = `
+                <div class="cart-item">
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-quantity">Кількість: ${item.quantity}</span>
+                    <span class="item-price">${itemTotal.toFixed(2)} $</span>
+                    <button class="btn-remove-item" data-index="${index}">Видалити</button>
+                </div>
+            `;
+            cartItemsList.innerHTML += cartItemHTML;
+        });
+    }
+
+    cartTotalElement.textContent = total.toFixed(2) + ' $';
+    updateCartIcon();
+}
+
+// Обробник кліку для додавання товару
+document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const productCard = event.target.closest('.product-card');
+        const productName = productCard.querySelector('.product-name').textContent.trim();
+        const priceText = productCard.querySelector('.product-price').textContent.replace('$', '').trim().split(' ')[0];
+        const price = parseFloat(priceText);
+        // Отримання опису для логування або подальшого використання
+        const productDescription = productCard.querySelector('.product-description')?.textContent.trim() || 'Без опису';
+
+
+        const existingItem = cart.find(item => item.name === productName);
+
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({ name: productName, price: price, quantity: 1, description: productDescription });
+        }
+        
+        console.log(`${productName} додано до кошика.`);
+        updateCartIcon();
+    });
+});
+
+// Обробники для модального вікна
+cartIconLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    renderCart(); 
+    cartModal.style.display = 'block';
+});
+
+closeModalBtn.addEventListener('click', () => {
+    cartModal.style.display = 'none';
+});
+
+checkoutBtn.addEventListener('click', () => {
+    if (cart.length > 0) {
+        const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+        alert(`🎉 Замовлення на суму ${totalAmount} $ успішно оформлено! Дякуємо! 📦`);
+        cart = []; 
+        cartModal.style.display = 'none';
+        renderCart();
+    } else {
+        alert('Кошик порожній! Додайте товари для оформлення замовлення.');
+    }
+});
+
+cartItemsList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-remove-item')) {
+        const indexToRemove = parseInt(e.target.dataset.index);
+        cart.splice(indexToRemove, 1);
+        renderCart();
+        console.log('Товар видалено з кошика.');
+    }
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+    }
+});
+
+
+// ====================================
+// 3. ЛОГІКА ПОШУКУ (SEARCH LOGIC)
+// ====================================
+
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    // Перебираємо всі дані про товари і вирішуємо, чи показувати картку
+    productsData.forEach(product => {
+        const productNameLower = product.name.toLowerCase();
+        
+        // Знаходимо батьківський product-grid для відображення повідомлення
+        const productGridElement = product.cardElement.closest('.product-grid');
+
+        if (productNameLower.includes(searchTerm)) {
+            product.cardElement.style.display = 'flex'; 
+        } else {
+            product.cardElement.style.display = 'none';
+        }
+    });
+
+    // Логіка відображення повідомлення "Нічого не знайдено"
+    // Оскільки ми змінили сітку, робимо перевірку на видимість у всій секції
+    const allCards = document.querySelectorAll('.product-card');
+    const visibleCards = Array.from(allCards).filter(card => card.style.display !== 'none');
+
+    let noResults = document.getElementById('no-results-message');
+
+    if (visibleCards.length === 0 && searchTerm.length > 0) {
+        if (!noResults) {
+            noResults = document.createElement('p');
+            noResults.id = 'no-results-message';
+            noResults.textContent = `За запитом "${searchTerm}" нічого не знайдено. 😥`;
+            // Додаємо його до першої секції товарів
+            document.querySelector('.products-section').appendChild(noResults); 
+        } else {
+            noResults.textContent = `За запитом "${searchTerm}" нічого не знайдено. 😥`;
+        }
+    } else {
+        if (noResults) {
+            noResults.remove();
+        }
+    }
+});
+
+
+// ====================================
+// 4. ЛОГІКА НАВІГАЦІЇ (SCROLL & ACTIVE STATE)
+// ====================================
+
+navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        
+        const targetId = e.target.getAttribute('href'); 
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            // Плавна прокрутка до розділу
+            window.scrollTo({
+                top: targetSection.offsetTop - 70, 
+                behavior: 'smooth'
+            });
+        }
+        
+        // Встановлення активного класу одразу після кліку
+        navItems.forEach(i => i.classList.remove('active'));
+        e.target.classList.add('active');
+
+        // Скидання стану пошуку при зміні розділу
+        searchInput.value = '';
+        productsData.forEach(p => p.cardElement.style.display = 'flex'); 
+        const noResults = document.getElementById('no-results-message');
+        if (noResults) {
+            noResults.remove();
+        }
+    });
+});
+
+// Додаткова логіка: Встановлення активного стану навігації при прокручуванні сторінки
+// Примітка: productSections містить коректні елементи DOM (вже оновлено при ініціалізації)
+window.addEventListener('scroll', () => {
+    let current = '';
+
+    productSections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - window.innerHeight * 0.3) { 
+            current = '#' + section.getAttribute('id');
+        }
+    });
+
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === current) {
+            item.classList.add('active');
+        }
+    });
+});
+
+
+// ====================================
+// 5. ІНІЦІАЛІЗАЦІЯ ПРИ ЗАВАНТАЖЕННІ СТОРІНКИ
+// ====================================
+window.onload = () => {
+    initializeProductsData();
+    updateCartIcon();
+};
