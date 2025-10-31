@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dota 2 Merch Shop</title>
-    <link rel="stylesheet" href="style.css">
-    </head>
+    <link rel="stylesheet" href="style.css"> 
+</head>
 <body>
 
     <header class="header">
@@ -23,7 +23,6 @@
             <ul class="nav-list">
                 <li><a href="#apparel" class="nav-item active">Одяг</a></li>
                 <li><a href="#acc_fig" class="nav-item">Аксесуари та Фігурки</a></li>
-                <li><a href="#sale" class="nav-item sale">Розпродаж</a></li>
             </ul>
         </nav>
     </header>
@@ -42,25 +41,37 @@
             <div class="product-card">
                 <img src="anti_mage.png" alt="Футболка Anti-Mage" class="product-image">
                 <p class="product-name">Anti-Mage Illusion T-Shirt</p>
-                <p class="product-price">29.99 $</p>
+                <p class="product-description">Високоякісна бавовняна футболка із зображенням ілюзій Anti-Mage.</p>
+                <p class="product-price">1199 грн</p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
             <div class="product-card">
                 <img src="Pudge Hook & Chains T-Shirt.png" alt="Футболка Pudge" class="product-image">
                 <p class="product-name">Pudge Hook & Chains T-Shirt</p>
-                <p class="product-price">24.99 $</p>
+                <p class="product-description">Футболка для фанатів м'ясника. Міцний матеріал та унікальний дизайн.</p>
+                <p class="product-price">999 грн</p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
             <div class="product-card">
                 <img src="t_25_2.png" alt="футболка winner TI 25" class="product-image">
                 <p class="product-name">Худі The Grand Magus</p>
-                <p class="product-price">59.99 $</p>
+                <p class="product-description">Тепле худі з преміальним принтом Rubick. Ідеально для холодних ночей.</p>
+                <p class="product-price">2399 грн</p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
             <div class="product-card">
                 <img src="ti_25.png" alt="Худі winner TI 25" class="product-image">
                 <p class="product-name">Худі winner TI 25</p>
-                <p class="product-price">64.99 $</p>
+                <p class="product-description">Ексклюзивна серія до The International. Обмежена кількість!</p>
+                <p class="product-price">2599 грн</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+            
+            <div class="product-card sale-item">
+                <img src="path/to/product_sale.jpg" alt="Знижковий товар" class="product-image">
+                <p class="product-name">Футболка: Invoker (🔥 ЗНИЖКА!)</p>
+                <p class="product-description">Остання можливість придбати класичну футболку Invoker за спеціальною ціною.</p>
+                <p class="product-price">599 грн <del>1199 грн</del></p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
         </div>
@@ -71,25 +82,23 @@
         <div class="product-grid">
             <div class="product-card">
                 <img src="mouse_pad.png" alt="Килимок DOTA 2" class="product-image">
-                <p class="product-name">Килимок для миші</p>
-                <p class="product-price">19.99 $</p>
+                <p class="product-name">Килимок для миші (Великий)</p>
+                <p class="product-description">Максимальний контроль та стиль для вашого ігрового місця. Нековзна основа.</p>
+                <p class="product-price">799 грн</p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
-             <div class="product-card">
+            <div class="product-card">
                 <img src="tiny.png" alt="Фігурка Tiny" class="product-image">
                 <p class="product-name">Фігурка: Плавучий Tiny</p>
-                <p class="product-price">49.99 $</p>
+                <p class="product-description">Деталізована колекційна фігурка героя Tiny. Чудовий подарунок фанату.</p>
+                <p class="product-price">1999 грн</p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
-        </div>
-    </section>
-    <section class="products-section" id="sale">
-        <h2>🔥 Розпродаж 🔥</h2>
-        <div class="product-grid">
             <div class="product-card">
-                <img src="path/to/product_sale.jpg" alt="Знижковий товар" class="product-image">
-                <p class="product-name">Футболка: Invoker (SALE)</p>
-                <p class="product-price">14.99 $ <del style="color: #999;">29.99 $</del></p>
+                <img src="tiny.png" alt="Фігурка Pudge" class="product-image">
+                <p class="product-name">Фігурка: Pudge</p>
+                <p class="product-description">Деталізована колекційна фігурка героя Pudge. Чудовий подарунок фанату.</p>
+                <p class="product-price">1999 грн</p>
                 <button class="btn btn-add-to-cart">Купити</button>
             </div>
         </div>
@@ -123,12 +132,12 @@
             <div id="cart-items-list">
                 </div>
             <div class="cart-summary">
-                <p>Загальна сума: <span id="cart-total">0.00 $</span></p>
+                <p>Загальна сума: <span id="cart-total">0.00 грн</span></p>
             </div>
             <button id="checkout-btn" class="btn btn-checkout">Оформити замовлення</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> 
 </body>
 </html>
