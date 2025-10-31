@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 Merch Shop</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">DOTA 2</div>
+            <div class="search-bar">
+                <input type="search" placeholder="Введіть ключове слово..." class="search-input">
+            </div>
+            <div class="account-actions">
+                <a href="#" class="icon-link">👤</a> 
+                <a href="#" id="cart-icon-link" class="icon-link">🛒</a> 
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="#apparel" class="nav-item active">Одяг</a></li>
+                <li><a href="#acc_fig" class="nav-item">Аксесуари та Фігурки</a></li>
+                <li><a href="#sale" class="nav-item sale">Розпродаж</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Знайди свій ідеальний мерч Dota 2!</h1>
+            <p class="sale-info">Знижка до 50% на обрані товари</p>
+            <a href="#apparel" class="btn btn-primary">Переглянути колекцію</a>
+        </div>
+    </section>
+
+    <section class="products-section new-arrivals" id="apparel">
+        <h2>Одяг (Футболки, Худі, Світшоти)</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="anti_mage.png" alt="Футболка Anti-Mage" class="product-image">
+                <p class="product-name">Anti-Mage Illusion T-Shirt</p>
+                <p class="product-price">29.99 $</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+            <div class="product-card">
+                <img src="Pudge Hook & Chains T-Shirt.png" alt="Футболка Pudge" class="product-image">
+                <p class="product-name">Pudge Hook & Chains T-Shirt</p>
+                <p class="product-price">24.99 $</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+            <div class="product-card">
+                <img src="t_25_2.png" alt="футболка winner TI 25" class="product-image">
+                <p class="product-name">Худі The Grand Magus</p>
+                <p class="product-price">59.99 $</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+            <div class="product-card">
+                <img src="ti_25.png" alt="Худі winner TI 25" class="product-image">
+                <p class="product-name">Худі winner TI 25</p>
+                <p class="product-price">64.99 $</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="acc_fig"> 
+        <h2>Аксесуари та Фігурки</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="mouse_pad.png" alt="Килимок DOTA 2" class="product-image">
+                <p class="product-name">Килимок для миші</p>
+                <p class="product-price">19.99 $</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+             <div class="product-card">
+                <img src="tiny.png" alt="Фігурка Tiny" class="product-image">
+                <p class="product-name">Фігурка: Плавучий Tiny</p>
+                <p class="product-price">49.99 $</p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+        </div>
+    </section>
+    <section class="products-section" id="sale">
+        <h2>🔥 Розпродаж 🔥</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="path/to/product_sale.jpg" alt="Знижковий товар" class="product-image">
+                <p class="product-name">Футболка: Invoker (SALE)</p>
+                <p class="product-price">14.99 $ <del style="color: #999;">29.99 $</del></p>
+                <button class="btn btn-add-to-cart">Купити</button>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-links">
+            <h4>Підтримка</h4>
+            <a href="#">FAQ</a>
+            <a href="#">Доставка і оплата</a>
+            <a href="#">Політика повернення</a>
+        </div>
+        <div class="footer-links">
+            <h4>Про нас</h4>
+            <a href="#">Історія</a>
+            <a href="#">Контакти</a>
+            <a href="#">Вакансії</a>
+        </div>
+        <div class="footer-social">
+            <h4>Слідкуйте за нами</h4>
+            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+        </div>
+        <p class="copyright">&copy; 2025 Dota 2 Merch Shop. Всі права захищені.</p>
+    </footer>
+    
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Ваш кошик</h2>
+            <div id="cart-items-list">
+                </div>
+            <div class="cart-summary">
+                <p>Загальна сума: <span id="cart-total">0.00 $</span></p>
+            </div>
+            <button id="checkout-btn" class="btn btn-checkout">Оформити замовлення</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

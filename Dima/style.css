@@ -1,0 +1,525 @@
+/*
+====================================
+ 1. Загальні стилі та Змінні
+====================================
+*/
+:root {
+    --color-dark: #1a1a1a; /* Темний фон */
+    --color-text: #e0e0e0; /* Світлий текст */
+    --color-accent: #e74c3c; /* Акцентний червоний (лого Dota 2) */
+    --color-sale: #f1c40f; /* Жовтий для розпродажу */
+    --color-primary-button: var(--color-accent);
+    --color-hover: #c0392b;
+    --color-cart-button: #3498db; /* Синій для кнопки "Купити" */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    min-height: 100vh;
+    scroll-padding-top: 80px; /* Для коректної прокрутки до секцій під фіксованим хедером */
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/*
+====================================
+ 2. HEADER
+====================================
+*/
+.header {
+    background-color: #000000;
+    padding: 10px 5%; /* ЗМЕНШЕНО ВЕРТИКАЛЬНИЙ PADDING */
+    border-bottom: 2px solid var(--color-accent);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 5px; /* МІНІМАЛЬНИЙ ВІДСТУП ДО NAV */
+}
+
+.logo {
+    font-size: 24px; 
+    font-weight: bold;
+    color: var(--color-accent);
+    flex-shrink: 0; 
+}
+
+.account-actions .icon-link {
+    font-size: 20px; 
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+    flex-shrink: 0; 
+}
+
+.account-actions .icon-link:hover {
+    color: var(--color-accent);
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    padding: 5px 10px;
+    transition: color 0.3s;
+    font-weight: 600;
+}
+
+.nav-item.active,
+.nav-item:hover {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.nav-item.sale {
+    color: var(--color-sale);
+}
+
+.search-bar {
+    flex-grow: 1; 
+    text-align: center;
+    padding: 0 20px; 
+}
+
+.search-input {
+    width: 100%; 
+    max-width: 400px;
+    padding: 5px 15px; /* ЗМЕНШЕНО ВЕРТИКАЛЬНИЙ PADDING */
+    border-radius: 20px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: var(--color-text);
+    transition: width 0.3s;
+}
+
+.search-input:focus {
+    width: 100%;
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+/*
+====================================
+ 3. HERO SECTION / ГОЛОВНИЙ БАНЕР
+====================================
+*/
+.hero-section {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('path/to/dota-hero-image.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.sale-info {
+    font-size: 20px;
+    color: var(--color-sale);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: var(--color-primary-button);
+    color: var(--color-text);
+    border: none; 
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-checkout { 
+    background-color: #27ae60;
+}
+
+.btn-checkout:hover {
+    background-color: #2ecc71;
+}
+
+.btn:hover {
+    background-color: var(--color-hover);
+}
+
+/*
+====================================
+ 4. PRODUCTS SECTION (СІТКА ТОВАРІВ)
+====================================
+*/
+.products-section {
+    padding: 40px 5%;
+}
+
+.products-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: var(--color-accent);
+}
+
+/* Grid для 4-х товарів у ряду */
+.product-grid {
+    display: grid;
+    /* На широких екранах: 4 рівні колонки */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+}
+
+.product-card {
+    background-color: #111;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Ефект підняття картки */
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--color-text);
+}
+
+.product-price {
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.btn-add-to-cart {
+    background-color: var(--color-cart-button);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #2980b9;
+}
+
+/* Повідомлення про відсутність результатів пошуку */
+#no-results-message {
+    grid-column: 1 / -1; 
+    text-align: center;
+    padding: 50px 0;
+    color: var(--color-sale);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*
+====================================
+ 5. СТИЛІ ДЛЯ МОДАЛЬНОГО ВІКНА КОШИКА
+====================================
+*/
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); 
+}
+
+.modal-content {
+    background-color: #111;
+    margin: 10% auto; 
+    padding: 30px;
+    border: 2px solid var(--color-accent);
+    width: 90%; 
+    max-width: 650px;
+    border-radius: 8px;
+    color: var(--color-text);
+    position: relative;
+    box-shadow: 0 5px 25px rgba(231, 76, 60, 0.4);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h2 {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-sale);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.close-btn {
+    color: var(--color-text);
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--color-accent);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    flex-grow: 1;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.item-quantity, .item-price {
+    margin-right: 20px;
+    white-space: nowrap;
+}
+
+.btn-remove-item {
+    background-color: var(--color-hover);
+    color: var(--color-text);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-remove-item:hover {
+    background-color: var(--color-accent);
+}
+
+.cart-summary {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid var(--color-sale);
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--color-sale);
+}
+
+.empty-cart-message {
+    text-align: center;
+    padding: 30px 0;
+    color: #999;
+    font-style: italic;
+}
+
+/*
+====================================
+ 6. FOOTER
+====================================
+*/
+.footer {
+    background-color: #000;
+    padding: 40px 5%;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-links {
+    min-width: 150px;
+}
+
+.footer-links h4, .footer-social h4 {
+    color: var(--color-accent);
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-links a, .footer-social a {
+    display: block;
+    margin-bottom: 8px;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover, .footer-social a:hover {
+    color: var(--color-accent);
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+    font-size: 14px;
+}
+
+/*
+====================================
+ 7. АДАПТИВНІСТЬ (МЕДІА-ЗАПИТИ)
+====================================
+*/
+@media (max-width: 1200px) {
+    /* На середніх екранах: 3 товари в ряду */
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    .search-input:focus {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* На планшетах: 2 товари в ряду */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    /* ПОВЕРТАЄМО ВЕРТИКАЛЬНИЙ ВИГЛЯД ДЛЯ МОБІЛЬНИХ */
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .logo, .account-actions, .search-bar {
+        width: 100%; /* Займає всю ширину */
+        margin-bottom: 10px;
+        padding: 0;
+    }
+    .search-input {
+        width: 100%;
+        max-width: none;
+    }
+    .search-input:focus {
+        width: 100%;
+    }
+    .account-actions {
+        order: 3; /* Переміщуємо іконки в кінець */
+    }
+    .logo {
+        order: 1;
+    }
+    .search-bar {
+        order: 2;
+    }
+    /* ... */
+    .hero-section {
+        height: 350px;
+        padding-left: 0;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-content {
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+    }
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-links {
+        margin-bottom: 20px;
+    }
+    .footer-links a {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    .modal-content {
+        margin: 5% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    /* На мобільних: 1 товар у ряду */
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .cart-item {
+        flex-wrap: wrap;
+    }
+    .item-name {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .item-quantity, .item-price {
+        margin-right: 10px;
+    }
+}
